@@ -4,6 +4,7 @@ import 'package:formulaire_flutter/widgets/input_form.dart';
 import 'package:formulaire_flutter/widgets/radio_Input.dart';
 
 import '../widgets/checkbox_input.dart';
+import '../widgets/dropdown_input.dart';
 import '../widgets/slider_input.dart';
 import '../widgets/switch_Input.dart';
 
@@ -27,7 +28,8 @@ class HomeScreen extends StatelessWidget {
             //Expanded(child: CheckBoxInput(),),
            // Expanded(child: RadioInput(),),
            // Expanded(child: SwitchInput(),),
-            Expanded(child: SliderInput(),),
+           // Expanded(child: SliderInput(),),
+            Expanded(child: DropDownInput(),),
           ],
         ),
       ),
