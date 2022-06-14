@@ -1,7 +1,6 @@
 // la premiere chose pour gerer l'etat c'est le statefullwidget
 // ou encore le provider, ou encore le block, scoop model, redus, mobX.
 import 'package:flutter/material.dart';
-
 class Input extends StatefulWidget {
   const Input({Key? key}) : super(key: key);
 
@@ -10,14 +9,35 @@ class Input extends StatefulWidget {
 }
 
 class _InputState extends State<Input> {
+  // Todo2 : initialisation  de loginController de type TextEditingCOntroller
+  final loginController = TextEditingController();
+  final emailController = TextEditingController();
+  final nomController = TextEditingController();
+  final prenomController = TextEditingController();
+
+  @override
   void initState() {
     super.initState();
-    print('Mounted');
+    //TODO ecoutons les changement operer sur le loginController;
+    loginController.addListener(_printlatestValue);
+    print('valeur du textField : $loginController'); //
+  /*  print('Mounted');
     setState(() {
       print('Rendu');
-    });
-  }
+    });*/
 
+  }
+  // Todo:  obligatoire  quand on utilise un textEditingController
+  // N'oubliez pas de disposer du TextEditing Controller  lorqu'il n'est plus neccessaire.
+  @override
+  void dispose(){
+    loginController.dispose();
+    super.dispose();
+
+  }
+  void _printlatestValue() {
+    print('valeur du textField : ${loginController}');
+  }
   String login = '';
 
   @override
@@ -25,8 +45,8 @@ class _InputState extends State<Input> {
     return Column(
       children: [
         TextField(
-          autocorrect: true,
-          autofocus: false,
+          // Todo1 : Associer in textEditingController a la propriété.
+          controller: loginController,
           onChanged: (text) {
             // le text represente la valeur saisi par le user.
             //print('Change ! $text' );
@@ -56,6 +76,13 @@ class _InputState extends State<Input> {
                 });
           },*/
         ),
+        ElevatedButton(
+          onPressed: () {
+            // TODO : Get the operate value.
+            print('Valeur saisie : ${loginController.text}');
+          },
+          child: Text("Valider"),
+        ),
         Card(
           child: Text(
             'Boujour : $login ',
@@ -66,74 +93,3 @@ class _InputState extends State<Input> {
   }
 }
 
-/*
-void main() => runApp(const MyApp());
-
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  static const String _title = 'Flutter Code Sample';
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: _title,
-      home: MyStatefulWidget(),
-    );
-  }
-}
-
-class MyStatefulWidget extends StatefulWidget {
-  const MyStatefulWidget({Key? key}) : super(key: key);
-
-  @override
-  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
-}
-
-class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-  late TextEditingController _controller;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = TextEditingController();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: TextField(
-          controller: _controller,
-          onSubmitted: (String value) async {
-            await showDialog<void>(
-              context: context,
-              builder: (BuildContext context) {
-                return AlertDialog(
-                  title: const Text('Thanks!'),
-                  content: Text(
-                      'You typed "$value", which has length ${value.characters.length}.'),
-                  actions: <Widget>[
-                    TextButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: const Text('OK'),
-                    ),
-                  ],
-                );
-              },
-            );
-          },
-        ),
-      ),
-    );
-  }
-}
-*/
