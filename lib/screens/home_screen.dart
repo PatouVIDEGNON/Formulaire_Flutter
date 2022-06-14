@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 //import 'package:formulaire_flutter/widgets/input.dart';
 import 'package:formulaire_flutter/widgets/input_form.dart';
+import 'package:formulaire_flutter/widgets/radio_Input.dart';
 
 import '../widgets/checkbox_input.dart';
+import '../widgets/slider_input.dart';
+import '../widgets/switch_Input.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -21,7 +24,10 @@ class HomeScreen extends StatelessWidget {
           children: const [
             //InputForm(),
            // Input(),
-            Expanded(child: CheckBoxInput(),),
+            //Expanded(child: CheckBoxInput(),),
+           // Expanded(child: RadioInput(),),
+           // Expanded(child: SwitchInput(),),
+            Expanded(child: SliderInput(),),
           ],
         ),
       ),

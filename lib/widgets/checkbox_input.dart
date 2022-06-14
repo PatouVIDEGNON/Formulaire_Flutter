@@ -9,10 +9,12 @@ class CheckBoxInput extends StatefulWidget {
 
 class _CheckBoxInputState extends State<CheckBoxInput> {
   bool isChecked = false;
+final Color couleur = Colors.deepOrangeAccent;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: couleur,
       appBar: AppBar(
         title: Text('Checkbox'),
       ),
